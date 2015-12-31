@@ -14,7 +14,7 @@ module.exports =
 		path:
 			type:		'string'
 			required:	true
-			unique:		true
+			
 
 		servername:
 			type:		'string'
