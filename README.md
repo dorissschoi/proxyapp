@@ -30,7 +30,9 @@ update environment variables in config/env/development.coffee for server
 			password:	'pass1234'
 			database:	'proxyapp'
 ```
+create config file folder
 ```
+mkdir conf.d
 sails lift --dev
 ```
 
