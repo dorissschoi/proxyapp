@@ -33,9 +33,5 @@ update environment variables in config/env/development.coffee for server
 ```
 sails lift --dev
 ```
-set unique composite key directly in db
-http://stackoverflow.com/questions/24923750/sails-js-composite-unique-field
-```
-db.apps.ensureIndex({ path: 1, servername: 1}, { unique: true })
-```
+
 
