@@ -8,15 +8,21 @@ location /p/ {
 }
 ```
 
-API
+# API
 ```
 get /api/apps - list login user record
 post /api/apps - create a apps proxy with the specified attributes
 put /api/apps/:id - update a apps attributes of the specified id
 delete /api/apps/:id - delete apps of the specified id
 ```
-Configuration
+# Configuration
 
+```
+git clone https://github.com/dorissschoi/proxyapp.git
+cd proxyapp
+npm install && bower install
+mkdir conf.d
+```
 update environment variables in config/env/development.coffee for server
 ```
 	port:			1337
@@ -30,9 +36,8 @@ update environment variables in config/env/development.coffee for server
 			password:	'pass1234'
 			database:	'proxyapp'
 ```
-create config file folder
 ```
-mkdir conf.d
+node_modules/.bin/gulp
 sails lift --dev
 ```
 
