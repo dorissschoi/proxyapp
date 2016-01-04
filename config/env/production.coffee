@@ -4,7 +4,7 @@ agent = require 'https-proxy-agent'
 module.exports =
 	path:			path
 	url:			"http://localhost:1337#{path}"
-	port:			1337
+	port:			8023
 
 	oauth2:
 		verifyURL:			"https://mob.myvnc.com/org/oauth2/verify/"
@@ -26,7 +26,7 @@ module.exports =
 		mongo:
 			adapter:	'sails-mongo'
 			driver:		'mongodb'
-			host:		'localhost'
+			host:		'db'
 			port:		27017
 			user:		'proxyapprw'
 			password:	'pass1234'
