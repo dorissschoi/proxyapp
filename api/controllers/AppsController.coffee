@@ -15,13 +15,13 @@ module.exports =
 		
 		Model
 			.findOne({id: pk},data)
-      		.then (updatedInstance) ->
+			.then (updatedInstance) ->
 				ConfigServices.deleteConfig(updatedInstance)
 				res.ok()
 			.catch res.serverError
 		
 		Model
 			.update({id: pk},data)
-      		.then (updatedInstance) ->
+			.then (updatedInstance) ->
 				res.ok()
 			.catch res.serverError	

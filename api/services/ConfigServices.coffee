@@ -46,5 +46,5 @@ module.exports =
 			#sails.log.info "Del file success, path: " + data.path + " ,server: " + data.servername + " ,port: " + data.port
 		reject = (err) ->
 			sails.log.error "Del file err : " + err
-		delFile(data).then fulfill, reject	
+		delFile(data).then fulfill, reject
 		

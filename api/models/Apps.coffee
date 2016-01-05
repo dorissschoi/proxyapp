@@ -50,4 +50,3 @@ module.exports =
 		ConfigServices.createConfig(values)
 
 		return cb null, values
-	

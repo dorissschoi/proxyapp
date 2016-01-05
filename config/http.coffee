@@ -19,4 +19,4 @@ module.exports =
 				'favicon'
 				'404'
 				'500'
-			]		
+			]				

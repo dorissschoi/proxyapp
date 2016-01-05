@@ -1,19 +1,17 @@
-path = '/apps'
+path = '/todo'
 agent = require 'https-proxy-agent'
 
 module.exports =
 	path:			path
-	url:			"http://localhost:1337#{path}"
-	port:			8023
+	url:			"https://mob.myvnc.com/todouat"
+	port:			8009
 
 	oauth2:
 		verifyURL:			"https://mob.myvnc.com/org/oauth2/verify/"
 		tokenURL:			"https://mob.myvnc.com/org/oauth2/token/"
 		scope:				["https://mob.myvnc.com/org/users"]
 		
-	http:
-		opts:
-			agent:	new agent("http://proxy1.scig.gov.hk:8080")
+	
 
 	promise:
 		timeout:	10000 # ms
@@ -28,13 +26,24 @@ module.exports =
 			driver:		'mongodb'
 			host:		'db'
 			port:		27017
-			user:		'proxyapprw'
+			user:		'todouatrw'
 			password:	'pass1234'
-			database:	'proxyapp'	
+			database:	'todouat'	
+		
+	im:
+		url: 		"https://mob.myvnc.com/im.app/api/msg"
+		client:
+			id:		'todomsgUATAuth'
+			secret: 'pass1234'
+		user:
+			id: 	'todoadmin'
+			secret: 'pass1234'
+		scope:  	[ "https://mob.myvnc.com/org/users", "https://mob.myvnc.com/mobile"]
+		txt:		"one new task"
+		digesttxt:	"Overdue task"
+		xmpp:
+			domain:	'mob.myvnc.com'
+		adminjid:	"todoadmin@mob.myvnc.com"
+		sendmsg:	true #dev not send
 	
-	proxy:
-		file:
-			path:		'./conf.d/'
-			extension:	'.conf'	
-			
 			
