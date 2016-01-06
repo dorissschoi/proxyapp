@@ -1,4 +1,4 @@
-path = '/todo'
+path = '/apps'
 agent = require 'https-proxy-agent'
 
 module.exports =
@@ -28,26 +28,9 @@ module.exports =
 			driver:		'mongodb'
 			host:		'localhost'
 			port:		27017
-			user:		'todosailsrw'
+			user:		'proxyapprw'
 			password:	'pass1234'
-			database:	'todosails'	
-		
-	im:
-		url: 		"https://mob.myvnc.com/im.app/api/msg"
-		client:
-			id:		'todomsgDEVAuth'
-			secret: 'pass1234'
-		user:
-			id: 	'todoadmin'
-			secret: 'pass1234'
-		scope:  	[ "https://mob.myvnc.com/org/users", "https://mob.myvnc.com/mobile"]
-		txt:		"one new task"
-		digesttxt:	"Overdue task"
-		xmpp:
-			domain:	'mob.myvnc.com'
-		adminjid:	"todoadmin@mob.myvnc.com"
-		sendmsg:	true #dev not send 
-	
+			database:	'proxyapp'	
 
 	proxy:
 		file:

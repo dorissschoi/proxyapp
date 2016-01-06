@@ -1,6 +1,6 @@
 env = require './env.coffee'
 
-module = angular.module('starter', ['ionic', 'util.auth', 'starter.controller', 'http-auth-interceptor', 'ngTagEditor', 'ActiveRecord', 'ngTouch', 'ngAnimate', 'ionic-datepicker', 'ionic-timepicker', 'pascalprecht.translate', 'locale'])
+module = angular.module('starter', ['ionic', 'util.auth', 'starter.controller', 'http-auth-interceptor', 'ngTagEditor', 'ActiveRecord', 'ngTouch', 'ngAnimate', 'pascalprecht.translate', 'locale'])
 
 module
 .run (authService) ->
@@ -20,52 +20,23 @@ module
 		abstract: true
 		templateUrl: "templates/menu.html"
 
-	$stateProvider.state 'app.createTodo',
-		url: "/todo/create"
+	$stateProvider.state 'app.create',
+		url: "/apps/create"
 		cache: false
 		views:
 			'menuContent':
-				templateUrl: "templates/todo/create.html"
-				controller: 'TodoCtrl'
+				templateUrl: "templates/apps/create.html"
+				controller: 'CreateCtrl'									
+
+	$stateProvider.state 'app.edit',
+		url: "/apps/edit"
+		params: editRec: null
+		cache: false
+		views:
+			'menuContent':
+				templateUrl: "templates/apps/edit.html"
+				controller: 'EditCtrl'		
 	
-	$stateProvider.state 'app.readTodo',
-		url: "/todo/read"
-		params: SelectedTodo: null, myTodoCol: null, backpage: null
-		cache: false
-		views:
-			'menuContent':
-				templateUrl: "templates/todo/read.html"
-				#controller: 'TodoReadCtrl'
-				controller: 'TodoEditCtrl'
-				
-	$stateProvider.state 'app.editTodo',
-		url: "/todo/edit"
-		params: SelectedTodo: null, backpage: null
-		cache: false
-		views:
-			'menuContent':
-				templateUrl: "templates/todo/edit.html"
-				controller: 'TodoEditCtrl'				
-
-	# My todo day
-	$stateProvider.state 'app.weekList',
-		url: "/todo/weekList"
-		cache: false
-		views:
-			'menuContent':
-				templateUrl: "templates/todo/weeklist.html"
-				controller: 'WeekListCtrl'
-
-	# My todo completed
-	$stateProvider.state 'app.completedList',
-		url: "/todo/completedList"
-		cache: false
-		views:
-			'menuContent':
-				templateUrl: "templates/todo/completedlist.html"
-				controller: 'CompletedListCtrl'									
-
-	#
 	$stateProvider.state 'app.list',
 		url: "/apps/list"
 		cache: false
@@ -74,7 +45,7 @@ module
 				templateUrl: "templates/apps/list.html"
 				controller: 'AppsListCtrl'		
 					
-	$urlRouterProvider.otherwise('/todo/weekList')				
+	$urlRouterProvider.otherwise('/apps/list')				
 	
 	
 	

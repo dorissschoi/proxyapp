@@ -1,0 +1,31 @@
+<ion-view >
+  <form name="myForm" class="my-form" novalidate>
+  <ion-header-bar>
+
+    	<button class="button ion-close-round" ui-sref="app.list"></button>
+    	<h1 class="title">Edit</h1>
+    	<button class="button button-clear button-positive" 
+    	ng-click="controller.update();"
+    	ng-disabled="myForm.port.$error.required || myForm.path.$error.required || myForm.servername.$error.required" 
+    	ng-hide="button"
+    	>Save</button>
+  </ion-header-bar>
+  <ion-content padding="true">
+	<div class="list">
+		<label class="item item-input">
+	  		<input type="text" placeholder="Path" name="path" ng-model="model.newpath" required>
+	  	</label>
+
+		<label class="item item-input">
+	  		<input type="text" placeholder="Servername" name="servername" ng-model="model.newservername" required>
+	  	</label>
+	  	
+		<label class="item item-input">
+	  		<input type="text" placeholder="Port" name="port" ng-model="model.newport" required>
+	  	</label>
+		
+			  	
+	</div>	    	
+  </ion-content>
+  </form>
+</ion-view>

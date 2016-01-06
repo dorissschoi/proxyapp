@@ -133,93 +133,7 @@ model = (ActiveRecord, $rootScope, platform) ->
 		@me: ->
 			(new User(username: 'me/')).$fetch()	
 			
-	class Permission extends Model
-		$idAttribute: '_id'
 		
-		$urlRoot: "#{env.serverUrl()}/api/permission"
-		
-	class Acl extends PageableCollection
-		$idAttribute: '_id'
-	
-		$urlRoot: "#{env.serverUrl()}/api/permission"
-		
-		$parse: (res, opts) ->
-			_.each res.results, (value, key) =>
-				res.results[key] = new Permission res.results[key]
-			return res
-		
-	class UserGrps extends Collection
-		$idAttribute: 'group'
-		
-		$urlRoot: "#{env.imUrl()}/api/roster"
-		
-		$parse: (res, opts) ->
-			ret = []
-			_.each res, (rosteritem) ->
-				_.each rosteritem.groups, (group) ->
-					if group not in ret
-						ret.push group
-			return ret
-			
-		select: (group) ->
-			_.each @models, (item) ->
-				item.selected = item.group == group
-				
-		selected: ->
-			_.findWhere @models, selected: true
-			
-		toString: ->
-			@selected()?.group
-			
-	class FileGrps extends Collection
-		$idAttribute: 'group'
-		
-		$urlRoot: "#{env.serverUrl()}/api/tag"
-		
-		select: (group) ->
-			_.each @models, (item) ->
-				item.selected = item.group == group
-				
-		selected: ->
-			_.findWhere @models, selected: true
-			
-		toString: ->
-			@selected()?.group
-
-
-	class Todo extends Model
-		$idAttribute: 'id'
-		
-		$urlRoot: "#{env.serverUrl()}/api/todo/"
-		#$urlRoot: "http://localhost:1337/todo/api/todo/"
-		
-		
-		$save: (values, opts) ->
-			if @$hasChanged()
-				super(values, opts)
-			else
-				return new Promise (fulfill, reject) ->
-					fulfill @		
-		
-
-	# TodayList
-	class TodayList extends PageableCollection
-		$idAttribute: 'id'
-	
-		$urlRoot: "#{env.serverUrl()}/api/todo"
-		#$urlRoot: "http://localhost:1337/todo/api/todo/"
-		
-			
-		$parseModel: (res, opts, username) ->
-			if !_.isNull(res.dateEnd)
-				res.dateEnd = new Date(Date.parse(res.dateEnd))
-			res.username = username
-			return new Todo res
-			
-		$parse: (res, opts) ->
-			_.each res.results, (value, key) =>
-				res.results[key] = @$parseModel(res.results[key], opts, res.username)
-			return res			
 
 	# ResLog model
 	class Apps extends Model
@@ -240,13 +154,6 @@ model = (ActiveRecord, $rootScope, platform) ->
 	Model:		Model
 	Collection:	Collection
 	User:		User
-	File:		File
-	Permission:	Permission
-	Acl:		Acl
-	UserGrps:	UserGrps
-	FileGrps:	FileGrps
-	Todo:		Todo
-	TodayList:	TodayList
 	Apps:		Apps
 	AppsList:	AppsList
 				

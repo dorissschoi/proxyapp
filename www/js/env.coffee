@@ -16,12 +16,12 @@ module.exports =
 		#"http://localhost:3000/#{path}"
 		#"http://localhost:1337/#{path}"
 		"http://localhost:1337"
-	path: 'todo'		
+	path: 'apps'		
 	oauth2:
 		authUrl: "#{@authUrl}/org/oauth2/authorize/"
 		opts:
 			authUrl: "https://mob.myvnc.com/org/oauth2/authorize/"
 			response_type:  "token"
 			scope:          "https://mob.myvnc.com/org/users"
-			client_id:      'todoSailsDEVAuth'
+			client_id:      'proxyappDEVAuth'
 			

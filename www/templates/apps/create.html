@@ -1,0 +1,38 @@
+<ion-view>
+	<div ng-controller="CreateCtrl">
+	<form name="myForm"  class="my-form" novalidate>
+	
+	
+	
+	<ion-header-bar class="item-input-inset" align-title="left">
+	    <button class="button ion-close-round" ui-sref="app.list"></button>
+	    <h1 class="title" style="text-align:center">Create apps</h1>
+	    <div class="buttons" ng-init="isDisabled = false">
+			
+			<button class="button button-clear button-positive" 
+    		ng-click="controller.add()"
+    		ng-disabled="myForm.port.$error.required || myForm.path.$error.required || myForm.servername.$error.required">Save</button>	        
+	    </div>
+	</ion-header-bar>
+	
+	<ion-content>
+
+		<div class="list">
+			<label class="item item-input">
+				<input type="text" placeholder="Path" name="path" ng-model="apps.path" required>
+			</label>
+			
+			<label class="item item-input">
+				<input type="text" placeholder="Servername" name="servername" ng-model="apps.servername" required>
+			</label>
+
+			<label class="item item-input">
+				<input type="text" placeholder="Port" name="port" ng-model="apps.port" required>
+			</label>
+			
+		</div>
+		
+	</ion-content>
+	</form>
+	</div>
+</ion-view>

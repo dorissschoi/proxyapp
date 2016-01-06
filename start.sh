@@ -1,6 +1,6 @@
 #!/bin/sh
 
-root=~/prod/todosails
+root=~/prod/proxyapp
 sails=`which sails`
 
-forever start --workingDir ${root} -a -l todosails.log ${sails} lift --prod
+forever start --workingDir ${root} -a -l proxyapp.log ${sails} lift --prod
