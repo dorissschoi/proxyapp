@@ -2,8 +2,9 @@ path = '/apps'
 agent = require 'https-proxy-agent'
 
 module.exports =
-	path:			path
-	url:			"http://localhost:1337#{path}"
+	
+	hookTimeout:	400000
+	
 	port:			1337
 
 	oauth2:

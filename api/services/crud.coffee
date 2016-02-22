@@ -21,8 +21,6 @@ module.exports =
 		Model = actionUtil.parseModel req
 		cond = actionUtil.parseCriteria req
 		
-		#sails.log "cond: " + JSON.stringify cond
-		
 		count = Model.count()
 			.where( cond )
 			.toPromise()
