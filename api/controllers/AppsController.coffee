@@ -13,7 +13,7 @@ module.exports =
 		cond = 
 			path:	data.path
 		
-		sails.models.apps
+		Model
 			.findOne()
 			.where(path: data.path)
 			.populateAll()
@@ -32,6 +32,15 @@ module.exports =
 		Model = actionUtil.parseModel(req)
 		data = actionUtil.parseValues(req)
 		
+		# check if apps exists
+		Model
+			.findOne()
+			.where(path: data.path)
+			.then (result) ->
+				if result
+					return res.status(409).send("Apps already exists.")
+			.catch res.serverError
+			
 		# del file by ID
 		Model
 			.findOne({id: pk},data)

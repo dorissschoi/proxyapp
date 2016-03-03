@@ -3,8 +3,7 @@ module.exports =
 	policies:
 		AppsController:
 			'*':		false
-			find:		['isAuth', 'filterByCreatedBy']
-			findOne:	['isAuth', 'filterByCreatedBy']
+			find:		['isAuth', 'resolveMe']
 			create:		['isAuth', 'setCreatedBy']
 			update:		['isAuth', 'isCreatedBy']
 			destroy:	['isAuth', 'isCreatedBy']
