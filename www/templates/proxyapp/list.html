@@ -1,0 +1,42 @@
+<ion-view>
+	<ion-header-bar class="item-input-inset">
+	    <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+	    </button>
+	    <h1 class='title'>Apps List</h1>
+	    <button class="button ion-plus-round button-clear" ui-sref="app.AppsCreate"></button>  
+	    
+	</ion-header-bar>
+    <div class="row bar-subheader">
+    	
+    	<div class='col col-35'>Path</div>
+    	<div class='col col-35'>Servername</div>
+    	<div class='col col-10'>Port</div>
+    	<div class='col col-20'>Created By{{me}}</div>
+    	
+    </div>
+	<ion-content class="has-subheader">
+		<ion-list>
+			<ion-item ng-repeat="model in collection.models" on-tap="$event.stopPropagation(); read('{{model.id}}');">				
+				<div class='row'>
+					<div class='col col-35'>
+						{{model.path}}
+					</div>
+					<div class='col col-35'>
+						{{model.servername}}
+					</div>
+					<div class='col col-10'>
+						{{model.port}} 
+					</div>
+					<div class='col col-20'>
+						{{model.createdBy}}
+					</div>
+				</div>
+				
+				<ion-option-button ng-if="createdBy=='me'" class="button button-positive icon-left ion-edit" on-tap="$event.stopPropagation(); edit('{{model.id}}')">Edit</ion-option-button>
+				<ion-option-button ng-if="createdBy=='me'" class="button button-assertive icon-left ion-trash-b" on-tap="$event.stopPropagation(); delete(model)">Delete</ion-option-button>
+			</ion-item>
+		</ion-list>
+		<ion-infinite-scroll ng-if="collection.state.skip < collection.state.count" on-infinite="loadMore()">
+		</ion-infinite-scroll>	
+	</ion-content>
+</ion-view>

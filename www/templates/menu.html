@@ -5,18 +5,19 @@
 
   <ion-side-menu side="left" ng-controller="MenuCtrl">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">{{'menu' | translate}}</h1>
+      <h1 class="title">{{'Menu'}}</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
-       
-		<ion-item nav-clear menu-close ui-sref="app.list">
-          Apps list
+        <ion-item nav-clear menu-close href="#/proxyapp/create">
+        	Add
         </ion-item>
-        
-	    <ion-item nav-clear menu-close ng-if="env.isNative()" ng-click="navigator.app.exitApp()">
-          Exit
+        <ion-item nav-clear menu-close href="#/proxyapp/list?createdBy=me&sort=path">
+        	My apps
         </ion-item>
+        <ion-item nav-clear menu-close href="#/proxyapp/list?sort=path">
+        	All apps
+        </ion-item>        
       </ion-list>
     </ion-content>
   </ion-side-menu>

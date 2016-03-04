@@ -36,21 +36,22 @@ module.exports =
 		Model
 			.findOne()
 			.where(path: data.path)
+			.populateAll()
 			.then (result) ->
 				if result
 					return res.status(409).send("Apps already exists.")
-			.catch res.serverError
-			
-		# del file by ID
-		Model
-			.findOne({id: pk},data)
-			.then (updatedInstance) ->
-				ConfigServices.deleteConfig(updatedInstance)
-				res.ok()
+				else
+					# del file by ID
+					Model
+						.findOne({id: pk},data)
+						.then (updatedInstance) ->
+							ConfigServices.deleteConfig(updatedInstance)
+							res.ok()
+						.catch res.serverError
+					Model
+						.update({id: pk},data)
+						.then (updatedInstance) ->
+							res.ok()
+						.catch res.serverError	
 			.catch res.serverError
 		
-		Model
-			.update({id: pk},data)
-			.then (updatedInstance) ->
-				res.ok()
-			.catch res.serverError	
