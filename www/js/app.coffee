@@ -1,6 +1,6 @@
 env = require './env.coffee'
 
-angular.module 'starter', ['ionic', 'starter.controller', 'starter.model', 'util.auth', 'ActiveRecord', 'ngTouch', 'ionic-datepicker', 'ngFancySelect', 'pascalprecht.translate', 'locale']
+angular.module 'starter', ['ionic', 'starter.controller', 'starter.model', 'util.auth', 'ActiveRecord', 'ngTouch', 'ngFancySelect', 'pascalprecht.translate', 'locale']
 
 	.run (authService) ->
 		authService.login env.oauth2.opts
