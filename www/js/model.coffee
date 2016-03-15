@@ -3,7 +3,7 @@ require 'PageableAR'
 		
 angular.module 'starter.model', ['PageableAR']
 	
-	.factory 'resources', (pageableAR, $filter) ->
+	.factory 'resources', (pageableAR) ->
 
 		
 		#  model

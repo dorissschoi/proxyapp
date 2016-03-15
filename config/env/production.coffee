@@ -5,7 +5,7 @@ module.exports =
 	
 	hookTimeout:	400000
 	
-	port:			1337
+	port:			8026
 
 	oauth2:
 		verifyURL:			"https://mob.myvnc.com/org/oauth2/verify/"
@@ -37,4 +37,7 @@ module.exports =
 		file:
 			path:		'./conf.d/'
 			extension:	'.conf'			
+			content1:	'location /'
+			content2:	'/ {\n  proxy_pass http://'
+			content3:	'/;\n}\n'		
 			

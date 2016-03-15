@@ -37,4 +37,8 @@ module.exports =
 		file:
 			path:		'./conf.d/'
 			extension:	'.conf'			
+			content1:	'location /'
+			content2:	'/ {\n  proxy_pass http://'
+			content3:	'/;\n}\n'
+			
 			

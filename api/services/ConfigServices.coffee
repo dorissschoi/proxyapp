@@ -23,7 +23,7 @@ delFile = (data) ->
 createFile = (data) ->
 	sails.log.info "Create file, path: " + data.path + " ,server: " + data.servername + " ,port: " + data.port
 	FullFileName = genFileName(data.path)
-	filedata = "location /" + data.path + "/ {\n" + "  proxy_pass http://" + data.servername + ":" + data.port + "/;\n}\n"
+	filedata = sails.config.proxy.file.content1 + data.path + sails.config.proxy.file.content2 + data.servername + ":" + data.port + sails.config.proxy.file.content3
 	
 	fs.writeFile FullFileName, filedata, (err) ->
 		if err
