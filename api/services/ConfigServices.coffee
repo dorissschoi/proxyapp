@@ -5,46 +5,15 @@ genFileName = (appsName) ->
 	filepath = 	sails.config.proxy.file.path
 	return filepath + filename
 
-delFile = (data) ->
-	sails.log.info "Del file, path: " + data.path + " ,server: " + data.servername + " ,port: " + data.port
-	return new Promise (fulfill, reject) ->
-		FullFileName = genFileName(data.path)
-		fs.exists FullFileName, (exists) ->
-			if exists
-				fs.unlink FullFileName, (err) ->
-					if err
-						reject "Del file err:" + err
-					else
-						sails.log.info "Del file success"
-						fulfill data						
-			else
-				reject "File not exists!"
-						
-createFile = (data) ->
-	sails.log.info "Create file, path: " + data.path + " ,server: " + data.servername + " ,port: " + data.port
-	FullFileName = genFileName(data.path)
-	filedata = sails.config.proxy.file.content1 + data.path + sails.config.proxy.file.content2 + data.servername + ":" + data.port + sails.config.proxy.file.content3
-	
-	fs.writeFile FullFileName, filedata, (err) ->
-		if err
-			sails.log.error "Create file err:" + err
-		else
-			sails.log.info "Create file success: " + FullFileName	
-					
 module.exports = 
 	createConfig: (data) ->
-		createFile(data)
-		return
+		FullFileName = genFileName(data.path)
+		sails.log.info "Create file, path: #{FullFileName} ,server: #{data.servername} ,port: #{data.port}" 
+		filedata = sails.config.proxy.file.content1 + data.path + sails.config.proxy.file.content2 + data.servername + ":" + data.port + sails.config.proxy.file.content3
+		fs.writeFileSync FullFileName, filedata 
 		
-	deleteConfig: (d) ->
-		if _.isUndefined(d.path)
-			data = d[0]
-		else
-			data = d
-			
-		fulfill = (data) ->
-			#sails.log.info "Del file success, path: " + data.path + " ,server: " + data.servername + " ,port: " + data.port
-		reject = (err) ->
-			sails.log.error "Del file err : " + err
-		delFile(data).then fulfill, reject
+	deleteConfig: (data) ->
+		FullFileName = genFileName(data.path)
+		sails.log.info "Del file, path: #{FullFileName} ,server: #{data.servername} ,port: #{data.port}" 
+		fs.unlinkSync(FullFileName)
 		

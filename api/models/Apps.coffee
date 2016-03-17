@@ -37,16 +37,12 @@ module.exports =
 			defaultsTo:	new Date()      
 
 	afterCreate: (values, cb) ->
-		ConfigServices.createConfig(values)
-
+		ConfigServices.createConfig values
+	
 		return cb null, values  
 	
 	afterDestroy: (values, cb) ->
-		ConfigServices.deleteConfig(values)
+		ConfigServices.deleteConfig values[0]
 
 		return cb null, values
 	
-	afterUpdate: (values, cb) ->
-		ConfigServices.createConfig(values)
-
-		return cb null, values

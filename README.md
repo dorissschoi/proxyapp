@@ -37,7 +37,7 @@ update environment variables in config/env/development.coffee for server
 			database:	'proxyapp'
 ```
 ```
-node_modules/.bin/gulp
+node_modules/.bin/gulp --prod=prod
 sails lift --dev
 ```
 
