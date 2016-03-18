@@ -61,4 +61,4 @@ angular.module 'starter', ['ionic', 'starter.controller', 'starter.model', 'util
 					ret = new resources.Apps({id: id})
 					ret.$fetch()			
 	
-		$urlRouterProvider.otherwise('/proxyapp/list?createdBy=me&sort=path')
+		$urlRouterProvider.otherwise('/proxyapp/list?createdBy=me&sort=path asc')

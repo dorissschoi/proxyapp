@@ -8,7 +8,7 @@ describe 'AppsController', ->
 			request(sails.hooks.http.app).post('/api/apps').set('Authorization',"Bearer #{sails.token}").send(path: 'apps1',servername: 'a', port:'1').end (err, res) ->
 				#console.log 'res:' + JSON.stringify(res)
 				assert.equal err, null
-				assert.equal res.status, '200'
+				assert.equal res.status, '201'
 				
 				body = JSON.parse(res.text)
 				id = body.id
@@ -18,7 +18,7 @@ describe 'AppsController', ->
 				return
 			return
 		return  
-
+	
 	describe ' GET /api/apps', ->
 		it 'responds with list data', (done) ->
 			request(sails.hooks.http.app).get('/api/apps').set('Authorization',"Bearer #{sails.token}").end (err, res) ->
@@ -28,12 +28,12 @@ describe 'AppsController', ->
 				return
 			return
 		return
-
+	
 	describe ' POST /api/apps', ->
 		it 'responds with create duplication fail', (done) ->
 			request(sails.hooks.http.app).post('/api/apps').set('Authorization',"Bearer #{sails.token}").send(path: 'apps1',servername: 'a', port:'1').end (err, res) ->
 				assert.equal err, null
-				assert.equal res.status, '409'
+				assert.equal res.status, '400'
 				done()
 				return
 			return

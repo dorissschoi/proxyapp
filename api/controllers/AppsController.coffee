@@ -14,11 +14,12 @@ module.exports =
 		
 		Model.findOne({id: pk},data)
 			.then (result) ->
-				Model
-					.update({id: pk},data)
-					.then (updated) ->
+				Model.update({id: pk},data)
+					.then (updatedInstance) ->
 						ConfigServices.deleteConfig result
-						ConfigServices.createConfig updated[0]
-						res.ok()
-			.catch res.serverError	
+						ConfigServices.createConfig data
+						res.ok(data)			
+			.catch (err) ->
+				sails.log.error "err: #{err}"
+				res.badRequest(data)
 		
