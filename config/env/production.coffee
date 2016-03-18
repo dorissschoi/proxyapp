@@ -5,7 +5,7 @@ module.exports =
 	
 	hookTimeout:	400000
 	
-	port:			8026
+	port:			8027
 
 	oauth2:
 		verifyURL:			"https://mob.myvnc.com/org/oauth2/verify/"
