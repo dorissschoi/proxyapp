@@ -30,7 +30,7 @@ module.exports =
 			host:		'localhost'
 			port:		27017
 			user:		'proxyapprw'
-			password:	'pass1234'
+			password:	'password'
 			database:	'proxyapp'	
 
 	proxy:

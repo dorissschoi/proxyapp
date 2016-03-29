@@ -8,11 +8,11 @@ describe 'AppsController', ->
 			request(sails.hooks.http.app).post('/api/apps').set('Authorization',"Bearer #{sails.token}").send(path: 'apps1',servername: 'a', port:'1').end (err, res) ->
 				#console.log 'res:' + JSON.stringify(res)
 				assert.equal err, null
-				assert.equal res.status, '201'
+				assert.equal res.status, '200'
 				
 				body = JSON.parse(res.text)
 				id = body.id
-				#console.log 'created id:' + id
+				console.log "created id: #{id}"
 				
 				done()
 				return
@@ -33,7 +33,7 @@ describe 'AppsController', ->
 		it 'responds with create duplication fail', (done) ->
 			request(sails.hooks.http.app).post('/api/apps').set('Authorization',"Bearer #{sails.token}").send(path: 'apps1',servername: 'a', port:'1').end (err, res) ->
 				assert.equal err, null
-				assert.equal res.status, '400'
+				assert.equal res.status, '500'
 				done()
 				return
 			return
