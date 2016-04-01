@@ -11,24 +11,31 @@ module.exports =
 		FilePath = genFileName(data.path)
 		sails.log.info "Create file, path: #{FilePath} ,server: #{data.servername} ,port: #{data.port}" 
 		filedata = "#{sails.config.proxy.file.content1}#{data.path}#{sails.config.proxy.file.content2}#{data.servername}:#{data.port}#{sails.config.proxy.file.content3}"
-		fs.writeFileSync FilePath, filedata 
-		
+		sails.log.info "Link file: sudo ln -s #{sails.config.proxy.source.path}/#{data.path}.conf #{sails.config.proxy.nginx.path}/#{data.path}.conf"
+		try
+			fs.writeFileSync FilePath, filedata
+			child_process.execSync "sudo ln -s #{sails.config.proxy.source.path}/#{data.path}.conf #{sails.config.proxy.nginx.path}/#{data.path}.conf"
+		catch err
+			sails.log.error "Create file fail : #{data.path} err: #{err}"
+			return
+		return
+					
 	deleteConfig: (data) ->
 		FilePath = genFileName(data.path)
 		sails.log.info "Del file, path: #{FilePath} ,server: #{data.servername} ,port: #{data.port}" 
 		try
-			fs.accessSync FilePath
-			fs.unlinkSync FilePath 	
+			child_process.execSync "sudo rm #{sails.config.proxy.source.path}/#{data.path}.conf #{sails.config.proxy.nginx.path}/#{data.path}.conf" 	
 		catch err
-			sails.log.info "Del file fail : #{FilePath} err: #{err}"
-			
-	restartServer: (apps) ->
-		sails.log.info "App:#{apps} updated - Restart Nginx..."
-		child_process.exec 'killall -HUP Nginx', (error, stdout, stderr) ->
-		#child_process.exec 'killall -HUP chromium', (error, stdout, stderr) ->
-			if error
-				sails.log.error "Restart Nginx error: #{error}"
-			else
-				sails.log.info "Restart Nginx completed #{stdout}"	
+			sails.log.error "Del file fail : #{FilePath} err: #{err}"
 			return
+		return
+		
+	restartServer: (apps) ->
+		sails.log.info "App:#{apps} reload Nginx configure"
+		try
+			child_process.execSync "sudo killall -HUP nginx"
+		catch err
+			sails.log.error "Reload Nginx configure fail : #{apps} err: #{err}"
+			return
+		return	
 				

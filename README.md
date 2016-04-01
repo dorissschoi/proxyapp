@@ -1,10 +1,10 @@
 # proxyapp
-Generate proxy server configure file at conf.d folder and create record in mongodb.
+Generate proxy server configure file at conf.d folder and create record in mongodb. After create, update or delete, reload Nginx configure.
 
 output file, input param: path:p, servername: localhost, port: 3002
 ```
 location /p/ {
-  proxy_pass http://localhost2:3002/;
+  proxy_pass http://localhost:3002/;
 }
 ```
 
@@ -33,12 +33,15 @@ update environment variables in config/env/development.coffee for server
 			host:		'localhost'
 			port:		27017
 			user:		'proxyapprw'
-			password:	'pass1234'
+			password:	'password'
 			database:	'proxyapp'
 ```
 ```
 node_modules/.bin/gulp --prod=prod
 sails lift --dev
 ```
+allow program to run reload nginx configure, update /etc/sudoers file, using visudo command
+```
+user_account ALL= NOPASSWD: /usr/bin/killall,/bin/ln,/bin/rm
 
-
+```

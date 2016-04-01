@@ -40,5 +40,9 @@ module.exports =
 			content1:	'location /'
 			content2:	'/ {\n  proxy_pass http://'
 			content3:	'/;\n}\n'
+		source:
+			path:		'/home/dswchoi/git/proxyapp/conf.d'
+		nginx:
+			path:		'/etc/nginx/conf.d/https'	
 			
 			
