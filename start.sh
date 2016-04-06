@@ -1,6 +1,6 @@
 #!/bin/sh
 
-root=~/git/proxyapp
+root=~/prod/proxyapp
 sails=`which sails`
 
-forever start --workingDir ${root} -a -l proxyapp.log ${sails} lift --dev
+forever start --workingDir ${root} -a -l proxyapp.log ${sails} lift --prod
