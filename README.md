@@ -35,6 +35,9 @@ update environment variables in config/env/development.coffee for server
 			user:		'proxyapprw'
 			password:	'password'
 			database:	'proxyapp'
+	proxy:
+		source:
+			path:		'/home/dswchoi/git/proxyapp/conf.d'			
 ```
 ```
 node_modules/.bin/gulp --prod=prod
@@ -45,3 +48,7 @@ allow program to run reload nginx configure, update /etc/sudoers file, using vis
 user_account ALL= NOPASSWD: /usr/bin/killall,/bin/ln,/bin/rm
 
 ```
+create link of Nginx folder /etc/nginx/conf.d
+```
+# ln -s /home/dswchoi/git/proxyapp/conf.d /etc/nginx/conf.d/https
+``` 

@@ -43,6 +43,7 @@ module.exports =
 		source:
 			path:		'/home/dswchoi/git/proxyapp/conf.d'
 		nginx:
-			path:		'/etc/nginx/conf.d/https'	
+			path:		'/etc/nginx/conf.d/https'
+			reload:		'sudo killall -HUP nginx'	
 			
 			
